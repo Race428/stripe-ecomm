@@ -8,7 +8,7 @@ class Product extends React.Component {
   // }
 
   componentDidMount() {
-    this.stripe = window.Stripe('pk_test_ssGoDkPRiYVNRTessYvm6gvr', {
+    this.stripe = window.Stripe('pk_test_dICxWYQx3NRbPptPRPahmf7i00cTfeTSiJ', {
       betas: ['checkout_beta_4'],
     })
   }
@@ -36,7 +36,7 @@ class Product extends React.Component {
   }
 
   render() {
-    const { id, currency, price, name } = this.props
+    const { id, currency, price, name, image} = this.props
 
     const priceFloat = (price / 100).toFixed(2)
     const formattedPrice = Intl.NumberFormat('en-US', {
@@ -46,6 +46,7 @@ class Product extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit(id)}>
+        <img src = {image} alt = 'product' /> 
         <h2>
           {name} ({formattedPrice})
         </h2>
@@ -68,6 +69,7 @@ export default () => (
               attributes {
                 name
               }
+              image
             }
           }
         }
